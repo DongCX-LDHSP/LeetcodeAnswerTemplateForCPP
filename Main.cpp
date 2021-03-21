@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Solution.hpp"
 #include "Tools/PrintVector.hpp"
+#include "Tools/PrintPair.hpp"
 #include "Tools/ListNode.hpp"
 
 

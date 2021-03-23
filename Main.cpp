@@ -27,8 +27,7 @@ int main() {
         bool allPassed = true;
         cout << "Solution: " << endl;
         for (auto useCase : inputAndAnswer) {
-            cout << useCase;
-            cout << ": ";
+            cout << useCase << ": ";
 
             // call solution function here;
             auto result = solution.function();
@@ -36,12 +35,11 @@ int main() {
             cout << result;
             if (result != useCase.second) {
                 allPassed = false;
-                cout << "    Fail";
+                cout << "    Fail" << endl;
             }
             else {
-                cout << "    Pass";
+                cout << "    Pass" << endl;
             }
-            cout << endl;
         }
         cout << (allPassed == true ? "All passed!" : "Some case failed!") << endl;
     }

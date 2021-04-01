@@ -2,15 +2,11 @@
 #define SOLUTION
 
 
-// include here
-
-
-using namespace std;
-
+// your include here
 
 class Solution {
 public:
-    
+    virtual ReturnType function() = 0;
 };
 
 

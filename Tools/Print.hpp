@@ -5,6 +5,7 @@
 #include <iostream>
 #include <ostream>
 #include <vector>
+#include <map>
 
 
 using namespace std;
@@ -41,6 +42,28 @@ ostream& operator<<(ostream& output, pair<element1, element2> data) {
     output << ", ";
     output << data.second;
     output << ")";
+    return output;
+}
+
+
+/**
+ * 为map重载'<<'运算符
+ */
+template <typename key, typename value>
+ostream& operator<<(ostream& output, map<key, value> data) {
+    output << "{";
+    auto size = data.size();
+    for (auto temp : data) {
+        size -= 1;
+        if (size > 1) {
+            output << temp.first << ": " << temp.second << ", ";
+        }
+        else {
+            output << temp.first << ": " << temp.second;
+        }
+    }
+    output << "}";
+    return output;
 }
 
 

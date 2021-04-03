@@ -55,7 +55,7 @@ ostream& operator<<(ostream& output, map<key, value> data) {
     auto size = data.size();
     for (auto temp : data) {
         size -= 1;
-        if (size > 1) {
+        if (size > 0) {
             output << temp.first << ": " << temp.second << ", ";
         }
         else {

@@ -2,6 +2,7 @@
 #include "Tools/Print.hpp"
 #include "Tools/ListNode.hpp"
 #include "Tools/TreeNode.hpp"
+#include "Tools/Timer.hpp"
 // your include here
 #include "Solution/Solution.hpp"
 #include "Solution/Solution1.hpp"
@@ -50,20 +51,28 @@ void inline runSolution(vector<Solution*>& solutions, vector<UseCase>& useCases)
         wrongNum = 0;
         cout << "Solution" << i << ": " << endl;
 
+        // 初始化计时器
+        Timer timer;
         for (auto useCase : useCases) {
-            // call solution function here;
+            // 开始计时
+            timer.startTiming();
+            // 在这里运行解决方案
             auto result = solution->function(useCase.first);
+            // 结束计时
+            timer.endTiming();
             // 检验结果
             if (compareAnswer(useCase.second, result) == false) {
                 wrongNum += 1;
                 cout << "#";
             }
-            cout << useCase << ": " << result << endl;
+            cout << useCase << ": " << result << ", "
+                 << "用时: " << timer.getSingleMicroSeconds() << "ms" << endl;
         }
         // 输出统计信息
-        cout << "Total: " << useCaseNum << ", "
-             << "Pass: " << useCaseNum - wrongNum << ", "
-             << "Fail: " << wrongNum << endl;
+        cout << "用例数: " << useCaseNum << endl
+             << "通过数: " << useCaseNum - wrongNum << endl
+             << "失败数: " << wrongNum << endl
+             << "总时间: " << timer.getTotalMicroSeconds() << "ms" << endl;
 
         // 控制换行的输出
         if (i < solutionNum) {
@@ -91,6 +100,6 @@ int main() {
     // 释放解法申请的动态内存
     freeSolution(solutions);
 
-    cout << endl << "Process returned 0." << endl;
+    cout << endl << "程序正常退出！" << endl;
     return 0;
 }

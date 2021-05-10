@@ -4,8 +4,10 @@
 
 #include <iostream>
 #include <ostream>
+#include <sstream>
 #include <vector>
 #include <map>
+#include "TreeNode.hpp"
 
 
 using namespace std;
@@ -66,5 +68,24 @@ ostream& operator<<(ostream& output, map<key, value> data) {
     return output;
 }
 
+
+/**
+ * 为二叉树重载'<<'运算符
+ */
+ostream& operator<<(ostream& output, TreeNode* root) {
+    output << "First Order: {";
+
+    ostringstream tempOutputStream;
+    PrintTreeInFirstOrder(tempOutputStream, root);
+    // 删除构造的输出流末尾中多余的 ", "
+    tempOutputStream.seekp(tempOutputStream.tellp() - 2);
+    tempOutputStream.write("", 1);
+    tempOutputStream.write("", 1);
+    // 将格式化后的字符串流输出到指定输出中
+    output << tempOutputStream.str();
+
+    output << "}";
+    return output;
+}
 
 #endif

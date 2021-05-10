@@ -17,8 +17,8 @@ typedef pair<Input, Answer> UseCase;
 
 // 添加用例
 void inline addUseCase(vector<UseCase>& useCases) {
-    // 如果使用了二叉树，则可以使用setNullNodeValue设置合适的NULLNODE值
-    // setNullNodeValue(-2);
+    // 如果使用了二叉树，则可以使用SetNullNodeValue设置合适的NULLNODE值
+    // SetNullNodeValue(-2);
     useCases.push_back(UseCase());
 }
 

@@ -18,6 +18,21 @@ public:
         timing = false;
     }
 
+    // 重置计时器
+    void resetTimer() {
+        // 如果正在计时，则抛出逻辑错误
+        if (timing == true) {
+            cerr << endl << "(Timer::resetTimer)逻辑错误：计时器正在计时，无法重置计时器！" << endl;
+            throw logic_error("(Timer::resetTimer)逻辑错误：计时器正在计时，无法重置计时器！");
+        }
+        else {
+            totalTime = 0;
+            timing = false;
+            startTime = high_resolution_clock::now();
+            endTime = startTime;
+        }
+    }
+
     // 开始计时
     void startTiming() {
         if (timing == false) {

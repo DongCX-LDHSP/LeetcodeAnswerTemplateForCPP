@@ -46,7 +46,7 @@ enum Status {left, right, end};
 typedef std::pair<TreeNode* const, Status> NodeStatus;
 
 // 基于value值构建树的结点
-TreeNode* ConstrucNode(TreeValueType value) {
+TreeNode* ConstructNode(TreeValueType value) {
     return value == NULLNODE ? nullptr : new TreeNode(value);
 }
 
@@ -75,7 +75,7 @@ TreeNode* ConstructTree(const std::vector<TreeValueType>& values) {
 
     // 构建所有的结点
     for (const auto& value : values) {
-        nodePointers.push_back(ConstrucNode(value));
+        nodePointers.push_back(ConstructNode(value));
     }
 
     // 构建树时，临时存储根节点的指针

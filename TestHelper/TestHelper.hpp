@@ -83,7 +83,7 @@ public:
                 // 开始计时
                 timer.startTiming();
                 // 执行解决方案
-                auto result = solutions[index]->inorderTraversal(useCase.first);
+                auto result = solutions[index]->function(useCase.first);
                 // 结束计时
                 timer.endTiming();
                 if (compareAnswer(useCase.second, result) == false) {

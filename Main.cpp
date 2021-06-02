@@ -20,6 +20,8 @@ bool compareFunction(Answer a, Answer b) {
 int main() {
     // TODO: 在这里设置输出流，默认为标准输出流
     ostream& output = cout;
+    // 设置bool变量的输出为字符串形式
+    output << boolalpha;
     try {
         // 定义测试类
         TestHelper<Input, Answer, UseCase> test(output, compareFunction);

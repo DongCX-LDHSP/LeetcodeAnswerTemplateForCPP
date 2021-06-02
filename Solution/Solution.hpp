@@ -7,6 +7,7 @@
 class Solution {
 public:
     virtual ReturnType function() = 0;
+    virtual ~Solution(){}
 };
 
 

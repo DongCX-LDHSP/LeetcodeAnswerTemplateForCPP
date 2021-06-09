@@ -72,5 +72,21 @@ void FreeList(ListNode* head) {
     }
 }
 
+/**
+ * @param a: ListNode*, 被比较的链表a
+ * @param b: ListNode*, 被比较的链表b
+ */
+bool ListEqualByValue(ListNode* a, ListNode* b) {
+    while (a != nullptr && b != nullptr) {
+        if (a->val != b->val) {
+            return false;
+        }
+        a = a->next;
+        b = b->next;
+    }
+    // 结束循环时，a, b两个链表应该同时到达链表结尾
+    return a == nullptr && b == nullptr;
+}
+
 
 #endif

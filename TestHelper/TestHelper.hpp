@@ -131,16 +131,16 @@ private:
 
     // 释放动态生成的解决方案占用的动态内存
     void freeSolutions() {
-        for (const auto& useCase : useCases) {
-            // 在这里调用释放用例的方法
-            ;
+        for (auto solution : solutions) {
+            delete solution;
         }
     }
 
     // 释放用例占用的动态内存
     void freeUseCases() {
-        for (auto solution : solutions) {
-            delete solution;
+        for (const auto& useCase : useCases) {
+            // 在这里调用释放用例的方法
+            ;
         }
     }
 

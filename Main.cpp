@@ -17,41 +17,46 @@ typedef pair<Input, Answer> UseCase;
 // TODO: 这这里定义释放测试用例占用的动态内存的方法
 // void freeUseCaseFunction(UseCase& useCase);
 
+// 执行测试代码的函数
+void doTest(ostream& output) {
+    // 定义测试类
+    TestHelper<Input, Answer, UseCase> testHelper(output);
+
+    // 调用设置一些测试类的属性的方法，比如设置自定义的比较方法
+    {
+        // 设置比较计算结果与期待结果的方法
+        // testHelper.setCompareFunction(compareFunction);
+        // 设置释放用例占用的动态内存的方法
+        // testHelper.setFreeUseCaseFunction(freeUseCaseFunction);
+        // 设置空树结点的值
+        // testHelper.setTreeNullNodeValue(nullNodeValue);
+    }
+
+    // 添加测试用例
+    {
+        testHelper.addUseCase(
+            UseCase(
+                Input(), 
+                Answer()));
+    }
+
+    // 添加解决方案
+    {
+        testHelper.addSolution(new Solution1());
+    }
+
+    // 执行解决方案
+    testHelper.runSolutions();
+}
+
 int main() {
     // TODO: 在这里设置输出流，默认为标准输出流
     ostream& output = cout;
     // 设置bool变量的输出为字符串形式
     output << boolalpha;
     try {
-        // 定义测试类
-        TestHelper<Input, Answer, UseCase> testHelper(output);
-
-        // 调用设置一些测试类的属性的方法，比如设置自定义的比较方法
-        {
-            // 设置比较计算结果与期待结果的方法
-            // testHelper.setCompareFunction(compareFunction);
-            // 设置释放用例占用的动态内存的方法
-            // testHelper.setFreeUseCaseFunction(freeUseCaseFunction);
-            // 设置空树结点的值
-            // testHelper.setTreeNullNodeValue(nullNodeValue);
-        }
-
-        // 添加测试用例
-        {
-            testHelper.addUseCase(
-                UseCase(
-                    Input(), 
-                    Answer()));
-        }
-
-        // 添加解决方案
-        {
-            testHelper.addSolution(new Solution1());
-        }
-
-        // 执行解决方案
-        testHelper.runSolutions();
-
+        // 执行测试代码
+        doTest(output);
         output << endl << "程序正常退出！" << endl;
     }
     catch (out_of_range& e) {
@@ -63,7 +68,7 @@ int main() {
         output << e.what() << endl;
         output << endl << "####程序异常退出！####" << endl;
     }
-    catch(exception& e) {
+    catch (exception& e) {
         output << e.what() << endl;
         output << endl << "####程序异常退出！####" << endl;
     }

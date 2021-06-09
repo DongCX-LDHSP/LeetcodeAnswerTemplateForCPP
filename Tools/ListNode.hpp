@@ -8,13 +8,15 @@
 
 using namespace std;
 
+// TODO：你可以在这里修改链表保存的数据类型
+using ListNodeValType = int;
 
 struct ListNode {
-    int val;
+    ListNodeValType val;
     ListNode *next;
     ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    ListNode(ListNodeValType x) : val(x), next(nullptr) {}
+    ListNode(ListNodeValType x, ListNode *next) : val(x), next(next) {}
 };
 
 /**
@@ -33,10 +35,10 @@ void PrintListNode(ostream& output, ListNode* head) {
 
 /**
  * 基于list中的数据，按顺序构造一个链表
- * @param list: vector<int>, 构造链表的数据源
+ * @param list: vector<ListNodeValType>, 构造链表的数据源
  * @return ListNode*, 构造的链表的首地址
  */
-ListNode* GenerateAListByVector(vector<int> list) {
+ListNode* GenerateAListByVector(vector<ListNodeValType> list) {
     // 若列表为空，则直接返回nullptr
     if (list.size() == 0) {
         return nullptr;

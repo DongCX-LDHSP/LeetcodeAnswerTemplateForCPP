@@ -29,7 +29,7 @@ public:
      * @param freeUseCase: void (*)(UseCase&), 外部实现的释放用例占用的内存的方法
      * @param compareFunction: bool (*)(Answer, Answer), 比较执行结果的方法
      */
-    TestHelper(ostream &output, bool (*compareFunction)(Answer, Answer), void (*freeUseCase)(UseCase& useCase) = nullptr, TreeValueType nullNodeValue = GetNullNodeValue())
+    TestHelper(ostream &output, bool (*compareFunction)(Answer, Answer) = nullptr, void (*freeUseCase)(UseCase& useCase) = nullptr, TreeValueType nullNodeValue = GetNullNodeValue())
         : output(output) {
         init(nullNodeValue, compareFunction, freeUseCase);
     }
@@ -128,6 +128,9 @@ private:
      * @return bool, true：结果相同，false：结果不同
      */
     bool compareAnswer(Answer expected, Answer result) {
+        if (compareFunction == nullptr) {
+            return expected == result;
+        }
         return compareFunction(expected, result);
     }
 

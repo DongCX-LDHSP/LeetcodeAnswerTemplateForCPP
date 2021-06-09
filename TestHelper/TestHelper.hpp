@@ -26,11 +26,12 @@ public:
      * 测试类的构造函数
      * @param nullNodeValue: TreeValueType, 代表树的空结点的值
      * @param output: ostream&, 修改输出流
+     * @param freeUseCase: void (*)(UseCase&), 外部实现的释放用例占用的内存的方法
      * @param compareFunction: bool (*)(Answer, Answer), 比较执行结果的方法
      */
-    TestHelper(ostream &output, bool (*compareFunction)(Answer, Answer), TreeValueType nullNodeValue = GetNullNodeValue())
+    TestHelper(ostream &output, bool (*compareFunction)(Answer, Answer), void (*freeUseCase)(UseCase& useCase) = nullptr, TreeValueType nullNodeValue = GetNullNodeValue())
         : output(output) {
-        init(nullNodeValue, compareFunction);
+        init(nullNodeValue, compareFunction, freeUseCase);
     }
 
     // 析构函数，释放测试用例和解决方案占用的动态内存
@@ -106,11 +107,13 @@ public:
 // 私有方法
 private:
     // 初始化测试类
-    void init(TreeValueType nullNodeValue, bool (*compareFunction)(Answer, Answer)) {
+    void init(TreeValueType nullNodeValue, bool (*compareFunction)(Answer, Answer), void (*freeUseCase)(UseCase& useCase)) {
         // 设置代表树的空结点的值
         SetNullNodeValue(nullNodeValue);
         // 设置执行结果的比较方法
         this->compareFunction = compareFunction;
+        // 设置释放用例占用的动态内存的方法
+        this->freeUseCase = freeUseCase;
         // 初始化用例数量
         useCaseNum = useCases.size();
         // 初始化解决方案数量
@@ -137,9 +140,12 @@ private:
 
     // 释放用例占用的动态内存
     void freeUseCases() {
-        for (const auto& useCase : useCases) {
+        if (freeUseCase == nullptr) {
+            return;
+        }
+        for (auto& useCase : useCases) {
             // 在这里调用释放用例的方法
-            ;
+            freeUseCase(useCase);
         }
     }
 
@@ -160,6 +166,8 @@ private:
 
     // 指向执行结果比较方法的指针
     bool (*compareFunction)(Answer expected, Answer result);
+    // 释放用例占用的动态内存的函数指针
+    void (*freeUseCase)(UseCase& useCase);
 };
 
 #endif

@@ -10,7 +10,7 @@
 #include <vector>
 #include <iostream>
 
-// 在这里修改结点中存储的数据类型
+// TODO：在这里修改结点中存储的数据类型
 typedef int TreeValueType;
 
 // 代表空结点的值

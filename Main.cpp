@@ -55,8 +55,16 @@ int main() {
         output << endl << "程序正常退出！" << endl;
     }
     // 执行过程中产生异常
-    catch (exception e) {
-        output << e.what();
+    catch (logic_error& e) {
+        output << e.what() << endl;
+        output << endl << "####程序异常退出！####" << endl;
+    }
+    catch (out_of_range& e) {
+        output << e.what() << endl;
+        output << endl << "####程序异常退出！####" << endl;
+    }
+    catch(exception& e) {
+        output << e.what() << endl;
         output << endl << "####程序异常退出！####" << endl;
     }
     return 0;

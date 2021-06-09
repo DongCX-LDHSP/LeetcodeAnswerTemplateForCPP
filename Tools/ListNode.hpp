@@ -37,6 +37,15 @@ void PrintListNode(ostream& output, ListNode* head) {
  * @return ListNode*, 构造的链表的首地址
  */
 ListNode* GenerateAListByVector(vector<int> list) {
+    // 若列表为空，则直接返回nullptr
+    if (list.size() == 0) {
+        return nullptr;
+    }
+    // 若列表只有一个元素，则直接构建一个元素返回
+    else if (list.size() == 1) {
+        return new ListNode(list.back());
+    }
+    // 列表中多于1个元素，迭代构建链表
     ListNode* followElement = new ListNode(list.back());
     list.pop_back();
     ListNode* tempElement;

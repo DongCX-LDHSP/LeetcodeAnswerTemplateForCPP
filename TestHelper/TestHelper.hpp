@@ -44,21 +44,19 @@ public:
     // 添加用例
     void addUseCase(UseCase useCase) {
         useCases.push_back(useCase);
+        useCaseNum += 1;
     }
 
     // 添加解决方案
     void addSolution(Solution* solution) {
         solutions.push_back(solution);
+        solutionNum += 1;
     }
 
     // 执行所有的解决方案
     void runSolutions() {
-        // 解决方案数
-        solutionNum = solutions.size();
-        // 测试用例数
-        useCaseNum = useCases.size();
         // 遍历所有的解决方案并执行
-        for (int index = 0; index < solutionNum; index++) {
+        for (size_t index = 0; index < solutionNum; index++) {
             output << "解决方案" << index + 1 << ": " << endl;
             // 执行index指向的解决方案
             runSolutionAt(index);
@@ -70,7 +68,7 @@ public:
     }
 
     // 执行指定的解决方案，为了适应测试某一个解决方案的要求
-    void runSolutionAt(int index) {
+    void runSolutionAt(size_t index) {
         // 如果超出了索引范围则执行else分支抛出异常
         if (index < solutionNum) {
             // 执行失败的用例数
@@ -114,6 +112,10 @@ private:
         SetNullNodeValue(nullNodeValue);
         // 设置执行结果的比较方法
         this->compareFunction = compareFunction;
+        // 初始化用例数量
+        useCaseNum = useCases.size();
+        // 初始化解决方案数量
+        solutionNum = solutions.size();
     }
 
     /**
@@ -149,9 +151,10 @@ private:
     vector<Solution*> solutions;
     // 指向的输出流
     ostream& output;
-    // 开始执行解决方案时，相应的用例数和解决方案数
-    int useCaseNum;
-    int solutionNum;
+    // 测试用例的数量
+    size_t useCaseNum;
+    // 解决方案的数量
+    size_t solutionNum;
 
     // 计时器
     Timer timer;

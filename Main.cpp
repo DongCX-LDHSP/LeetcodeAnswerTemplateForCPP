@@ -13,9 +13,9 @@ typedef AnswerType Answer;
 typedef pair<Input, Answer> UseCase;
 
 // TODO: 在这里定义你自己的结果比较方法，一般不需修改
-bool compareFunction(Answer a, Answer b) {
-    return a == b;
-}
+// bool compareFunction(Answer a, Answer b);
+// TODO: 这这里定义释放测试用例占用的动态内存的方法
+// void freeUseCaseFunction(UseCase& useCase);
 
 int main() {
     // TODO: 在这里设置输出流，默认为标准输出流
@@ -24,11 +24,21 @@ int main() {
     output << boolalpha;
     try {
         // 定义测试类
-        TestHelper<Input, Answer, UseCase> test(output, compareFunction);
+        TestHelper<Input, Answer, UseCase> testHelper(output);
+
+        // 调用设置一些测试类的属性的方法，比如设置自定义的比较方法
+        {
+            // 设置比较计算结果与期待结果的方法
+            // testHelper.setCompareFunction(compareFunction);
+            // 设置释放用例占用的动态内存的方法
+            // testHelper.setFreeUseCaseFunction(freeUseCaseFunction);
+            // 设置空树结点的值
+            // testHelper.setTreeNullNodeValue(nullNodeValue);
+        }
 
         // 添加测试用例
         {
-            test.addUseCase(
+            testHelper.addUseCase(
                 UseCase(
                     Input(), 
                     Answer()));
@@ -36,11 +46,11 @@ int main() {
 
         // 添加解决方案
         {
-            test.addSolution(new Solution1());
+            testHelper.addSolution(new Solution1());
         }
 
         // 执行解决方案
-        test.runSolutions();
+        testHelper.runSolutions();
 
         output << endl << "程序正常退出！" << endl;
     }

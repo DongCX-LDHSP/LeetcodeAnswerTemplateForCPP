@@ -6,9 +6,9 @@
             "command": "D:\\The_Home_of_All_Kinds_of_Software\\Compiler\\mingw64\\bin\\g++.exe",
             "args": [
                 "-g",
-                "${file}",
+                "${workspaceFolder}\\Main.cpp",
                 "-o",
-                "${fileDirname}\\Debug\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}\\Debug\\Main.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
